@@ -3,52 +3,56 @@
 #include <string>
 using namespace std;
 
-struct Task {
+struct Task
+{
     string description;
     bool isCompleted;
 };
 
-// Function prototypes
 void showMenu();
-void addTask(vector<Task>& tasks);
-void viewTasks(const vector<Task>& tasks);
-void markTaskCompleted(vector<Task>& tasks);
-void removeTask(vector<Task>& tasks);
+void addTask(vector<Task> &tasks);
+void viewTasks(const vector<Task> &tasks);
+void markTaskCompleted(vector<Task> &tasks);
+void removeTask(vector<Task> &tasks);
 
-int main() {
+int main()
+{
     vector<Task> tasks;
     int choice;
     bool running = true;
 
-    while (running) {
+    while (running)
+    {
         showMenu();
         cin >> choice;
 
-        switch (choice) {
-            case 1:
-                addTask(tasks);
-                break;
-            case 2:
-                viewTasks(tasks);
-                break;
-            case 3:
-                markTaskCompleted(tasks);
-                break;
-            case 4:
-                removeTask(tasks);
-                break;
-            case 5:
-                running = false;
-                cout << "Exiting To-Do List Manager. Goodbye!" << endl;
-                break;
-            default:
-                cout << "Invalid choice. Please try again." << endl;
+        switch (choice)
+        {
+        case 1:
+            addTask(tasks);
+            break;
+        case 2:
+            viewTasks(tasks);
+            break;
+        case 3:
+            markTaskCompleted(tasks);
+            break;
+        case 4:
+            removeTask(tasks);
+            break;
+        case 5:
+            running = false;
+            cout << "Exiting To-Do List Manager. Goodbye!" << endl;
+            break;
+        default:
+            cout << "Invalid choice. Please try again." << endl;
         }
     }
     return 0;
 }
 
-void showMenu() {
+void showMenu()
+{
     cout << "\nTo-Do List Manager" << endl;
     cout << "1. Add Task" << endl;
     cout << "2. View Tasks" << endl;
@@ -58,8 +62,9 @@ void showMenu() {
     cout << "Enter your choice: ";
 }
 
-void addTask(vector<Task>& tasks) {
-    cin.ignore(); // Clear input buffer
+void addTask(vector<Task> &tasks)
+{
+    cin.ignore();
     Task newTask;
     cout << "Enter the task description: ";
     getline(cin, newTask.description);
@@ -68,21 +73,26 @@ void addTask(vector<Task>& tasks) {
     cout << "Task added successfully!" << endl;
 }
 
-void viewTasks(const vector<Task>& tasks) {
-    if (tasks.empty()) {
+void viewTasks(const vector<Task> &tasks)
+{
+    if (tasks.empty())
+    {
         cout << "No tasks in the list." << endl;
         return;
     }
 
     cout << "\nTo-Do List:" << endl;
-    for (size_t i = 0; i < tasks.size(); ++i) {
+    for (size_t i = 0; i < tasks.size(); ++i)
+    {
         cout << i + 1 << ". " << tasks[i].description
              << " [" << (tasks[i].isCompleted ? "Completed" : "Pending") << "]" << endl;
     }
 }
 
-void markTaskCompleted(vector<Task>& tasks) {
-    if (tasks.empty()) {
+void markTaskCompleted(vector<Task> &tasks)
+{
+    if (tasks.empty())
+    {
         cout << "No tasks to mark as completed." << endl;
         return;
     }
@@ -92,16 +102,21 @@ void markTaskCompleted(vector<Task>& tasks) {
     cout << "Enter the task number to mark as completed: ";
     cin >> taskNumber;
 
-    if (taskNumber < 1 || taskNumber > tasks.size()) {
+    if (taskNumber < 1 || taskNumber > tasks.size())
+    {
         cout << "Invalid task number." << endl;
-    } else {
+    }
+    else
+    {
         tasks[taskNumber - 1].isCompleted = true;
         cout << "Task marked as completed!" << endl;
     }
 }
 
-void removeTask(vector<Task>& tasks) {
-    if (tasks.empty()) {
+void removeTask(vector<Task> &tasks)
+{
+    if (tasks.empty())
+    {
         cout << "No tasks to remove." << endl;
         return;
     }
@@ -111,9 +126,12 @@ void removeTask(vector<Task>& tasks) {
     cout << "Enter the task number to remove: ";
     cin >> taskNumber;
 
-    if (taskNumber < 1 || taskNumber > tasks.size()) {
+    if (taskNumber < 1 || taskNumber > tasks.size())
+    {
         cout << "Invalid task number." << endl;
-    } else {
+    }
+    else
+    {
         tasks.erase(tasks.begin() + taskNumber - 1);
         cout << "Task removed successfully!" << endl;
     }
